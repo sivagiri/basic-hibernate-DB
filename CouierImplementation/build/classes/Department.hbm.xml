@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.siva.model.Department" table="department">
+        <id name="deptid">
+            <column name="deptid" />
+            <generator class="native" />
+        </id>
+        
+        <property name="departmentname">
+            <column name="departmentname" />
+        </property>
+   
+    </class>
+</hibernate-mapping>

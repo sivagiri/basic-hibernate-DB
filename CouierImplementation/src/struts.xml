@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true"></constant>
+
+	<!-- <constant name="struts.convention.result.path" value="/"></constant> -->
+	<package name="default" extends="json-default" namespace="/">
+
+		<!--<package name="user" namespace="/User" extends="struts-default"> -->
+				<action name="login"
+			class="com.siva.action.LoginAction">
+			<result name="success">welcome.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		
+		
+		<action name="*deptsfromdb" method="{1}" class="com.siva.action.RegDesignationSelectionAction">
+			<result name="populate">Register.jsp</result>
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">jsonString</param>
+			</result>
+		</action>
+		
+		<action name="addRegister" method="add" class="com.siva.action.RegisterAction">
+			<result name="success" type="redirect">listUser</result>
+		</action>
+		
+		<action name="listUser" method="list" class="com.siva.action.RegisterAction">
+			<result name="success">Register.jsp</result>
+		</action>
+		
+	</package>
+
+</struts>
