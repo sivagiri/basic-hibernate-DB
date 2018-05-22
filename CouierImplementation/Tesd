@@ -1,0 +1,22 @@
+	try {
+			getS3Client().putObject(putObjectRequest);
+		} catch (AmazonS3Exception e) {
+			e.getServiceName();
+			System.out.println("ErrorCode "+e.getErrorCode());
+			System.out.println("ErrorMessage "+e.getErrorMessage());
+			System.out.println("Message"+e.getMessage());
+			System.out.println("StatusCode"+e.getStatusCode());
+
+			//System.out.println(e);
+			String data = e.getMessage();
+			int index = data.indexOf('(');
+			
+			String message = data.substring(0, index);
+			String splittedData = data.substring(index);
+			String []errorData = splittedData.split(";");
+			String statusCode = errorData[1].split(":")[1];
+			String errorCode = errorData[2].split(":")[1];
+			
+			System.out.println(message);
+			System.out.println(statusCode.trim());
+			System.out.println(errorCode.trim());
